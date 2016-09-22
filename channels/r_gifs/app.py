@@ -14,7 +14,7 @@ def send_post(submission, bot):
     if what != "gif":
         return False
     # Download gif
-    download_file(gif_url)
+    download_file(gif_url, 'r_gifs.gif')
     # Telegram will not autoplay big gifs
     if os.path.getsize('r_gifs.gif') > 10 * 1024 * 1024:
         return False
