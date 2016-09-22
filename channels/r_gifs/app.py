@@ -21,7 +21,6 @@ def send_post(submission, bot):
     title = submission.title
     link = submission.short_link
     text = '%s\n%s\n\nby @r_gifs' % (title, link)
-    f = open('r_gifs.gif', 'rb')
-    bot.sendDocument(t_channel, f, caption=text)
-    f.close()
+    with open('r_gifs.gif', 'rb') as f:
+        bot.sendDocument(t_channel, f, caption=text)
     return True

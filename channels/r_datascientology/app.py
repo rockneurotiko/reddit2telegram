@@ -58,15 +58,13 @@ def send_post(submission, bot):
         if what == 'gif':
             if os.path.getsize(new_filename) > 10 * 1024 * 1024:
                 return False
-            f = open(new_filename, 'rb')
-            bot.sendDocument(t_channel, f, caption=text)
-            f.close()
+            with open(new_filename, 'rb') as f:
+                bot.sendDocument(t_channel, f, caption=text)
             return True
         elif what == 'other':
             if imghdr.what(new_filename) in ('jpeg', 'bmp', 'png'):
-                f = open(new_filename, 'rb')
-                bot.sendPhoto(t_channel, f, caption=text)
-                f.close()
+                with open(new_filename, 'rb') as f:
+                    bot.sendPhoto(t_channel, f, caption=text)
                 return True
             else:
                 text = '{}\n{}\n\n/r/{}\n{}'.format(title, url, subreddit, link)
